@@ -355,3 +355,144 @@
                 height: 200px;
             }
         }
+        /* ===== СТАТИСТИКА И ПРОГРЕСС ===== */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.progress-bar {
+    background: #E2E8F0;
+    border-radius: 20px;
+    height: 12px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+.progress-fill {
+    background: #0066FF;
+    height: 12px;
+    border-radius: 20px;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* ===== ФОРМА ДОБАВЛЕНИЯ ЗАДАЧИ ===== */
+.add-task-form {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #1A2C3E;
+}
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #0066FF;
+}
+.form-textarea {
+    resize: vertical;
+}
+
+/* ===== КАРТОЧКИ ЗАДАЧ ===== */
+.task-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+    margin-bottom: 24px;
+}
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.task-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.task-checkbox {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #0066FF;
+}
+.task-status-badge {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 30px;
+}
+.task-status-badge.completed {
+    background: #EFFAF5;
+    color: #10B981;
+}
+.task-status-badge.pending {
+    background: #FEF2F2;
+    color: #EF4444;
+}
+.task-description {
+    font-size: 16px;
+    color: #5A6E7A;
+    margin: 16px 0;
+    line-height: 1.5;
+}
+.task-commands {
+    background: #F1F5F9;
+    padding: 16px;
+    border-radius: 12px;
+    font-family: monospace;
+    font-size: 14px;
+    margin: 16px 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+.delete-task {
+    background: #EF4444 !important;
+    padding: 6px 16px !important;
+    font-size: 14px;
+}
+.delete-task:hover {
+    background: #DC2626 !important;
+}
+
+/* ===== АДАПТИВ ДЛЯ КАРТОЧЕК ===== */
+@media (max-width: 768px) {
+    .task-card {
+        padding: 24px;
+    }
+    .task-title {
+        font-size: 18px;
+    }
+    .add-task-form {
+        padding: 24px;
+    }
+}

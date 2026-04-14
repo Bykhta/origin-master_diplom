@@ -6,7 +6,6 @@
     <title>Чек-лист настройки HTTPS | EduFlow</title>
     <!-- Подключение шрифта Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <script src="/Users/bykhta/Desktop/diplom/origin-master_diplom/api/app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,17 +47,17 @@
 
             <!-- Форма добавления своей задачи -->
             <div class="add-task-form">
-                <h3 style="margin-bottom: 20px;">➕ Добавить свою задачу</h3>
-                <div class="form-group">
-                    <label>Название задачи</label>
-                    <input type="text" id="newTaskTitle" class="form-input" placeholder="Например: Настроить файрвол на порт 443">
-                </div>
-                <div class="form-group">
-                    <label>Описание (необязательно)</label>
-                    <textarea id="newTaskDesc" rows="2" class="form-textarea" placeholder="Подробности или команда..."></textarea>
-                </div>
-                <button id="addTaskBtn" class="btn-primary">Добавить задачу</button>
-            </div>
+    <h3 style="margin-bottom: 20px;">➕ Добавить свою задачу</h3>
+    <div class="form-group">
+        <label>Название задачи</label>
+        <input type="text" id="newTaskTitle" class="form-input" placeholder="Например: Настроить файрвол для порта 443">
+    </div>
+    <div class="form-group">
+        <label>Описание / команда (необязательно)</label>
+        <textarea id="newTaskDesc" rows="2" class="form-textarea" placeholder="Подробности или команда..."></textarea>
+    </div>
+    <button id="addTaskBtn" class="btn-primary">Добавить задачу</button>
+</div>
         </div>
     </section>
 
@@ -106,6 +105,6 @@
             © 2025 EduFlow — Интерактивный чек-лист настройки HTTPS
         </div>
     </footer>
-
+    <script src="api/app.js"></script>
 </body>
 </html>
