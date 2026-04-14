@@ -496,3 +496,70 @@
         padding: 24px;
     }
 }
+/* ===== БЛОК РЕДАКТИРОВАНИЯ ЗАДАЧИ ===== */
+.edit-area {
+    margin: 16px 0;
+    padding: 16px;
+    background: #F8FAFE;
+    border-radius: 16px;
+    border: 1px solid #E2E8F0;
+}
+.edit-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+.edit-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    justify-content: flex-end;
+}
+.btn-sm {
+    padding: 6px 16px;
+    font-size: 14px;
+}
+.task-image {
+    margin: 12px 0;
+    max-width: 100%;
+}
+.task-image img {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    object-fit: cover;
+}
+.image-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 8px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+.btn-icon:hover {
+    background: #F1F5F9;
+}
+.edit-toggle-btn {
+    background: none;
+    border: 1px solid #CBD5E1;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.edit-toggle-btn:hover {
+    background: #E2E8F0;
+}
