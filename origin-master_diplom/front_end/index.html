@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Чек-лист настройки HTTPS | EduFlow</title>
+    <!-- Подключение шрифта Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <script src="/Users/bykhta/Desktop/diplom/origin-master_diplom/api/app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">EduFlow</a>
+            <ul class="nav-links">
+                <li><a href="#todo-list">Чек-лист HTTPS</a></li>
+                <li><a href="#useful-links">Полезные ссылки</a></li>
+                <li><a href="#about">О нас</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Настройка HTTPS + Let's Encrypt</h1>
+            <p>Интерактивный чек-лист для пошаговой настройки защищённого соединения на веб-сервере. Отмечайте выполненные задачи, добавляйте свои и следите за прогрессом.</p>
+            <a href="#todo-list" class="btn-primary">Перейти к чек-листу</a>
+        </div>
+    </section>
+
+    <section id="todo-list">
+        <div class="container">
+            <h2 class="section-title">📋 Чек-лист настройки HTTPS</h2>
+            
+            <!-- Статистика и прогресс -->
+            <div class="stats">
+                <div>✅ Выполнено: <span id="completedCount">0</span> / <span id="totalCount">0</span></div>
+                <button id="resetBtn" class="btn-secondary" style="padding: 8px 20px;">Сбросить все</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <!-- Список задач будет вставлен сюда -->
+            <div id="tasksContainer" class="steps-grid"></div>
+
+            <!-- Форма добавления своей задачи -->
+            <div class="add-task-form">
+                <h3 style="margin-bottom: 20px;">➕ Добавить свою задачу</h3>
+                <div class="form-group">
+                    <label>Название задачи</label>
+                    <input type="text" id="newTaskTitle" class="form-input" placeholder="Например: Настроить файрвол на порт 443">
+                </div>
+                <div class="form-group">
+                    <label>Описание (необязательно)</label>
+                    <textarea id="newTaskDesc" rows="2" class="form-textarea" placeholder="Подробности или команда..."></textarea>
+                </div>
+                <button id="addTaskBtn" class="btn-primary">Добавить задачу</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="final-block" id="congratsBlock" style="display: none;">
+            <h2>🎉 Поздравляем! Все шаги настройки HTTPS успешно выполнены! 🎉</h2>
+            <a href="#about" class="btn-secondary">Связаться</a>
+        </div>
+    </div>
+
+    <section id="useful-links">
+        <div class="container">
+            <h2 class="section-title">Полезные ссылки</h2>
+            <div class="links-grid">
+                <div class="link-card"><a href="https://letsencrypt.org/docs/" target="_blank">Документация Let's Encrypt</a></div>
+                <div class="link-card"><a href="https://ssl-config.mozilla.org/" target="_blank">Mozilla SSL Config</a></div>
+                <div class="link-card"><a href="https://www.ssllabs.com/ssltest/" target="_blank">SSL Labs Test</a></div>
+                <div class="link-card"><a href="https://hstspreload.org/" target="_blank">HSTS Preload</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <div class="about-grid">
+                <div class="contact-info">
+                    <h3>Контакты</h3>
+                    <div class="contact-detail"><strong>Email:</strong> hello@eduflow.com</div>
+                    <div class="contact-detail"><strong>Телефон:</strong> +7 (999) 123-45-67</div>
+                    <div class="contact-detail"><strong>Telegram:</strong> @eduflow_support</div>
+                </div>
+                <div class="contact-info">
+                    <h3>Социальные сети</h3>
+                    <div class="contact-detail"><a href="#" style="color:#0066FF;">Instagram</a></div>
+                    <div class="contact-detail"><a href="#" style="color:#0066FF;">VKontakte</a></div>
+                    <div class="contact-detail"><a href="#" style="color:#0066FF;">YouTube</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background:#FFFFFF; margin-top: 40px; padding: 24px 0; text-align:center; border-top:1px solid #E2E8F0;">
+        <div class="container" style="color:#5A6E7A; font-size:14px;">
+            © 2025 EduFlow — Интерактивный чек-лист настройки HTTPS
+        </div>
+    </footer>
+
+</body>
+</html>
