@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- 4. Иконка для iPhone и iPad (Apple Touch Icon) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
     <title>Чек-лист настройки HTTPS | EduFlow</title>
-    <!-- Подключение шрифта Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,11 +14,12 @@
 
     <div class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">EduFlow</a>
+            <a href="#" class="logo">
+            <img src="images/logo.jpeg" alt="Логотип EduFlow" class="logo-img">
+            <span class="logo-text">EduFlow</span></a>
             <ul class="nav-links">
-                <li><a href="#todo-list">Чек-лист HTTPS</a></li>
-                <li><a href="#useful-links">Полезные ссылки</a></li>
-                <li><a href="#about">О нас</a></li>
+                 <li><a href="#useful-links">Полезные ссылки</a></li>
+                 <li><a href="#about">О нас</a></li>
             </ul>
         </div>
     </div>
@@ -25,15 +28,15 @@
         <div class="container hero-content">
             <h1>Настройка HTTPS + Let's Encrypt</h1>
             <p>Интерактивный чек-лист для пошаговой настройки защищённого соединения на веб-сервере. Отмечайте выполненные задачи, добавляйте свои и следите за прогрессом.</p>
-            <a href="#todo-list" class="btn-primary">Перейти к чек-листу</a>
+            <button id="showChecklistBtn" class="btn-primary">Перейти к чек-листу →</button>
         </div>
     </section>
 
-    <section id="todo-list">
+    <!-- Секция чек-листа изначально скрыта -->
+    <section id="todo-list" class="hidden-checklist">
         <div class="container">
             <h2 class="section-title">📋 Чек-лист настройки HTTPS</h2>
             
-            <!-- Статистика и прогресс -->
             <div class="stats">
                 <div>✅ Выполнено: <span id="completedCount">0</span> / <span id="totalCount">0</span></div>
                 <button id="resetBtn" class="btn-secondary" style="padding: 8px 20px;">Сбросить все</button>
@@ -42,10 +45,8 @@
                 <div class="progress-fill" id="progressFill"></div>
             </div>
 
-            <!-- Список задач будет вставлен сюда -->
             <div id="tasksContainer" class="steps-grid"></div>
 
-            <!-- Форма добавления своей задачи -->
             <div class="add-task-form">
                 <h3 style="margin-bottom: 20px;">➕ Добавить свою задачу</h3>
                 <div class="form-group">
@@ -53,13 +54,8 @@
                     <input type="text" id="newTaskTitle" class="form-input" placeholder="Например: Настроить файрвол для порта 443">
                 </div>
                 <div class="form-group">
-                    <label>Описание (можно изменить позже)</label>
-                    <textarea id="newTaskDesc" rows="2" class="form-textarea" placeholder="Подробности..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Фотография (необязательно)</label>
-                    <input type="file" id="newTaskImage" accept="image/*" class="form-input" style="padding: 8px;">
-                    <small style="display: block; margin-top: 6px; color: #5A6E7A;">Поддерживаются JPG, PNG, GIF. Фото сохранится в браузере.</small>
+                    <label>Описание (необязательно)</label>
+                    <textarea id="newTaskDesc" rows="2" class="form-textarea" placeholder="Подробности или команда..."></textarea>
                 </div>
                 <button id="addTaskBtn" class="btn-primary">Добавить задачу</button>
             </div>
@@ -91,14 +87,15 @@
             <div class="about-grid">
                 <div class="contact-info">
                     <h3>Контакты</h3>
-                    <div class="contact-detail"><strong>Email:</strong> bykhtatrap@gmail.com</div>
-                    <div class="contact-detail"><strong>Telegram:</strong> @Bykhta29</div>
+                    <div class="contact-detail"><strong>Email:</strong> hello@eduflow.com</div>
+                    <div class="contact-detail"><strong>Телефон:</strong> +7 (999) 123-45-67</div>
+                    <div class="contact-detail"><strong>Telegram:</strong> @eduflow_support</div>
                 </div>
                 <div class="contact-info">
                     <h3>Социальные сети</h3>
-                    <div class="contact-detail"><a href="t.me/Bykhta29 " style="color:#0066FF;">Instagram</a></div>
-                    <div class="contact-detail"><a href="https://vk.com/bykhta" style="color:#0066FF;">VKontakte</a></div>
-                    <div class="contact-detail"><a href="https://github.com/Bykhta" style="color:#0066FF;">GitHub</a></div>
+                    <div class="contact-detail"><a href="#" style="color:#0066FF;">Instagram</a></div>
+                    <div class="contact-detail"><a href="#" style="color:#0066FF;">VKontakte</a></div>
+                    <div class="contact-detail"><a href="#" style="color:#0066FF;">YouTube</a></div>
                 </div>
             </div>
         </div>
@@ -109,6 +106,30 @@
             © 2025 EduFlow — Интерактивный чек-лист настройки HTTPS
         </div>
     </footer>
+
+    <!-- Модальное окно для проблем -->
+    <div id="troubleModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3>⚠️ Возможные проблемы</h3>
+            <p id="troubleText"></p>
+        </div>
+    </div>
+    <!-- Модальное окно для выбора сброса -->
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="resetModalClose">&times;</span>
+            <h3>Сбросить или очистить список</h3>
+            <p style="margin-bottom: 24px;">Выберите действие:</p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button id="resetProgressBtn" class="btn-primary" style="background-color: #0066FF;">🔄 Сбросить прогресс (отметить все как невыполненные)</button>
+                <button id="clearAllTasksBtn" class="btn-primary" style="background-color: #FF6B4A;">🗑️ Удалить все задачи</button>
+                <button id="restoreDefaultBtn" class="btn-primary" style="background-color: #10B981;">📋 Восстановить начальный список</button>
+                <button id="cancelResetBtn" class="btn-secondary" style="background-color: #E2E8F0; color: #1A2C3E;">Отмена</button>
+            </div>
+        </div>
+    </div>
+
     <script src="api/app.js"></script>
 </body>
 </html>

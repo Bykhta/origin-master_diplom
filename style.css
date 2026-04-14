@@ -1,367 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-    }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F8FAFE; /* единый светлый фон (вариант А) */
+    color: #1A2C3E;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+}
 
-    body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F4F7FC;
-            color: #1A2C3E;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-    }
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
 
-        /* Контейнер */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
+/* ===== НАВИГАЦИЯ ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    z-index: 100;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0066FF;
+    text-decoration: none;
+}
+.nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+.nav-links a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #5A6E7A;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.nav-links a:hover {
+    color: #0066FF;
+}
 
-        /* ===== НАВИГАЦИЯ ===== */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background-color: #FFFFFF;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
-            z-index: 100;
-            height: 80px;
-            display: flex;
-            align-items: center;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0066FF;
-            text-decoration: none;
-        }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-        .nav-links a {
-            font-size: 16px;
-            font-weight: 500;
-            color: #5A6E7A;
-            text-decoration: none;
-            transition: color 0.2s ease;
-            line-height: 24px;
-        }
-        .nav-links a:hover {
-            color: #0066FF;
-        }
+/* ===== HERO (плавный переход А+В) ===== */
+.hero {
+    background: linear-gradient(135deg, #F0F4FF 0%, #E8F0FE 100%);
+    border-radius: 0 0 40px 40px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    position: relative;
+    min-height: auto;
+    padding: 60px 0;
+}
+/* псевдоэлемент для ещё более плавного перехода */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(240,244,255,0) 0%, #F8FAFE 100%);
+    pointer-events: none;
+}
+.hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1A2C3E;
+    margin-bottom: 16px;
+}
+.hero p {
+    font-size: 18px;
+    color: #4A627A;
+    margin-bottom: 32px;
+}
 
-        /* ===== ОБЩИЕ СЕКЦИИ ===== */
-        section {
-            padding: 80px 0;
-        }
-        .section-title {
-            font-size: 36px;
-            font-weight: 600;
-            line-height: 1.3;
-            color: #1A2C3E;
-            margin-bottom: 48px;
-            text-align: center;
-        }
+/* ===== ОБЩИЕ СЕКЦИИ ===== */
+section {
+    padding: 40px 0 60px;
+}
+.section-title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #1A2C3E;
+    margin-bottom: 24px;
+    text-align: center;
+}
 
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 0;
-        }
-        .hero-content {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1.2;
-            color: #1A2C3E;
-            margin-bottom: 16px;
-        }
-        .hero p {
-            font-size: 18px;
-            color: #5A6E7A;
-            margin-bottom: 32px;
-        }
-        .btn-primary {
-            display: inline-block;
-            background-color: #0066FF;
-            color: white;
-            font-weight: 500;
-            font-size: 16px;
-            padding: 16px 32px;
-            border-radius: 40px;
-            text-decoration: none;
-            transition: background-color 0.2s, box-shadow 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            background-color: #0052CC;
-            box-shadow: 0 4px 12px rgba(0,102,255,0.2);
-        }
-        .btn-secondary {
-            display: inline-block;
-            background-color: #FF6B4A;
-            color: white;
-            font-weight: 500;
-            font-size: 16px;
-            padding: 12px 32px;
-            border-radius: 40px;
-            text-decoration: none;
-            transition: background-color 0.2s;
-        }
-        .btn-secondary:hover {
-            background-color: #E55A3A;
-        }
-
-        /* ===== КАРТОЧКИ ШАГОВ ===== */
-        .steps-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-        .step-card {
-            background: #FFFFFF;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.02);
-            padding: 32px;
-            transition: box-shadow 0.2s;
-        }
-        .step-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
-        .step-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1A2C3E;
-        }
-        .step-status {
-            font-size: 14px;
-            font-weight: 500;
-            color: #10B981;
-            background: #EFFAF5;
-            padding: 4px 12px;
-            border-radius: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .step-status::before {
-            content: "✓";
-            font-weight: 700;
-        }
-        /* для демонстрации статус показываем только у первого, но можно у всех оставить, как пример */
-        .step-media {
-            margin-bottom: 24px;
-        }
-        .step-media img, .step-media video {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 16px;
-            background: #E2E8F0;
-        }
-        .step-description {
-            font-size: 16px;
-            color: #1A2C3E;
-            margin-bottom: 24px;
-        }
-        .criteria-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1A2C3E;
-            margin-bottom: 12px;
-        }
-        .criteria-list {
-            list-style: none;
-            margin-bottom: 24px;
-        }
-        .criteria-list li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 16px;
-            color: #5A6E7A;
-            margin-bottom: 12px;
-        }
-        .criteria-list li::before {
-            content: "○";
-            font-size: 18px;
-            color: #5A6E7A;
-        }
-        /* можно было бы сделать чекбоксы, но для демо оставим просто маркеры */
-        .error-block {
-            background-color: #FEF2F2;
-            border-left: 4px solid #EF4444;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 24px;
-        }
-        .error-block p {
-            font-size: 14px;
-            color: #EF4444;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .error-block p::before {
-            content: "⚠";
-            font-weight: bold;
-        }
-        .btn-step {
-            background-color: #0066FF;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 40px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-step:hover {
-            background-color: #0052CC;
-        }
-        .btn-step.disabled {
-            background-color: #E2E8F0;
-            color: #5A6E7A;
-            pointer-events: none;
-        }
-
-        /* ===== ПОЛЕЗНЫЕ ССЫЛКИ ===== */
-        .links-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            justify-content: center;
-        }
-        .link-card {
-            background: #FFFFFF;
-            border-radius: 24px;
-            padding: 24px;
-            width: 280px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .link-card a {
-            font-size: 16px;
-            font-weight: 500;
-            color: #0066FF;
-            text-decoration: none;
-        }
-        .link-card a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== О НАС ===== */
-        .about-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 48px;
-            justify-content: center;
-            background: #FFFFFF;
-            border-radius: 24px;
-            padding: 48px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .contact-info {
-            flex: 1;
-            min-width: 240px;
-        }
-        .contact-info h3 {
-            font-size: 24px;
-            margin-bottom: 24px;
-        }
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            color: #5A6E7A;
-        }
-        .contact-detail strong {
-            color: #1A2C3E;
-        }
-
-        /* ===== ФИНАЛЬНЫЙ БЛОК ===== */
-        .final-block {
-            background: #FFFFFF;
-            border-radius: 24px;
-            text-align: center;
-            padding: 64px 32px;
-            margin-top: 40px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .final-block h2 {
-            font-size: 28px;
-            font-weight: 500;
-            color: #1A2C3E;
-            margin-bottom: 32px;
-        }
-
-        /* ===== АДАПТИВ ===== */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
-            .hero h1 {
-                font-size: 36px;
-            }
-            .section-title {
-                font-size: 28px;
-                margin-bottom: 32px;
-            }
-            .step-card {
-                padding: 24px;
-            }
-            .step-title {
-                font-size: 22px;
-            }
-            .about-grid {
-                padding: 32px;
-            }
-            .nav-links {
-                gap: 20px;
-            }
-        }
-        @media (max-width: 640px) {
-            .nav-links {
-                gap: 16px;
-            }
-            .hero h1 {
-                font-size: 32px;
-            }
-            .step-media img, .step-media video {
-                height: 200px;
-            }
-        }
-        /* ===== СТАТИСТИКА И ПРОГРЕСС ===== */
+/* ===== СТАТИСТИКА И ПРОГРЕСС ===== */
 .stats {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-size: 16px;
     font-weight: 500;
 }
@@ -370,7 +124,7 @@
     border-radius: 20px;
     height: 12px;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
 }
 .progress-fill {
     background: #0066FF;
@@ -380,49 +134,34 @@
     transition: width 0.3s;
 }
 
-/* ===== ФОРМА ДОБАВЛЕНИЯ ЗАДАЧИ ===== */
-.add-task-form {
-    background: #FFFFFF;
-    border-radius: 24px;
-    padding: 32px;
-    margin-top: 40px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-}
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 8px;
-    color: #1A2C3E;
-}
-.form-input, .form-textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #E2E8F0;
-    border-radius: 16px;
-    font-family: inherit;
-    font-size: 16px;
-    transition: border 0.2s;
-    box-sizing: border-box;
-}
-.form-input:focus, .form-textarea:focus {
-    outline: none;
-    border-color: #0066FF;
-}
-.form-textarea {
-    resize: vertical;
-}
-
 /* ===== КАРТОЧКИ ЗАДАЧ ===== */
+.steps-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
 .task-card {
     background: #FFFFFF;
     border-radius: 24px;
-    padding: 32px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: box-shadow 0.2s;
-    margin-bottom: 24px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+}
+/* Текущий таск (первый незавершённый) */
+.task-card.current-task {
+    border: 2px solid #0066FF;
+    box-shadow: 0 12px 28px rgba(0,102,255,0.15);
+    background: #FFFFFF;
+    transform: scale(1.01);
+}
+/* Заблокированные таски (пошаговое открытие, вариант Б) */
+.task-card.locked {
+    opacity: 0.6;
+    filter: grayscale(0.1);
+    pointer-events: none;
+}
+.task-card.locked .task-checkbox {
+    cursor: not-allowed;
 }
 .task-header {
     display: flex;
@@ -438,11 +177,34 @@
     font-size: 20px;
     font-weight: 600;
 }
+/* Кастомный анимированный чекбокс (вариант В) */
 .task-checkbox {
-    width: 22px;
-    height: 22px;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #CBD5E1;
+    border-radius: 50%;
+    background: white;
     cursor: pointer;
-    accent-color: #0066FF;
+    transition: all 0.2s ease;
+    position: relative;
+}
+.task-checkbox:checked {
+    background: #0066FF;
+    border-color: #0066FF;
+}
+.task-checkbox:checked::after {
+    content: '✓';
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Ripple-эффект при клике */
+.task-checkbox:active {
+    transform: scale(0.9);
 }
 .task-status-badge {
     font-size: 14px;
@@ -462,7 +224,6 @@
     font-size: 16px;
     color: #5A6E7A;
     margin: 16px 0;
-    line-height: 1.5;
 }
 .task-commands {
     background: #F1F5F9;
@@ -473,7 +234,25 @@
     margin: 16px 0;
     overflow-x: auto;
     white-space: pre-wrap;
-    word-break: break-all;
+}
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+.edit-toggle-btn, .trouble-btn {
+    background: none;
+    border: 1px solid #CBD5E1;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.edit-toggle-btn:hover, .trouble-btn:hover {
+    background: #E2E8F0;
 }
 .delete-task {
     background: #EF4444 !important;
@@ -484,82 +263,199 @@
     background: #DC2626 !important;
 }
 
-/* ===== АДАПТИВ ДЛЯ КАРТОЧЕК ===== */
-@media (max-width: 768px) {
-    .task-card {
-        padding: 24px;
-    }
-    .task-title {
-        font-size: 18px;
-    }
-    .add-task-form {
-        padding: 24px;
-    }
+/* ===== ФОРМА ДОБАВЛЕНИЯ ===== */
+.add-task-form {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
-/* ===== БЛОК РЕДАКТИРОВАНИЯ ЗАДАЧИ ===== */
-.edit-area {
-    margin: 16px 0;
-    padding: 16px;
-    background: #F8FAFE;
-    border-radius: 16px;
-    border: 1px solid #E2E8F0;
+.form-group {
+    margin-bottom: 20px;
 }
-.edit-textarea {
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.form-input, .form-textarea {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #CBD5E1;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 14px;
-    resize: vertical;
-}
-.edit-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 12px;
-    justify-content: flex-end;
-}
-.btn-sm {
-    padding: 6px 16px;
-    font-size: 14px;
-}
-.task-image {
-    margin: 12px 0;
-    max-width: 100%;
-}
-.task-image img {
-    max-width: 200px;
-    max-height: 150px;
-    border-radius: 12px;
+    padding: 12px 16px;
     border: 1px solid #E2E8F0;
-    object-fit: cover;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border 0.2s;
 }
-.image-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #0066FF;
 }
-.btn-icon {
-    background: none;
+.btn-primary {
+    display: inline-block;
+    background-color: #0066FF;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 12px 28px;
+    border-radius: 40px;
     border: none;
     cursor: pointer;
-    font-size: 18px;
-    padding: 4px 8px;
-    border-radius: 20px;
     transition: background 0.2s;
 }
-.btn-icon:hover {
-    background: #F1F5F9;
+.btn-primary:hover {
+    background-color: #0052CC;
 }
-.edit-toggle-btn {
-    background: none;
-    border: 1px solid #CBD5E1;
-    padding: 4px 12px;
-    border-radius: 30px;
-    font-size: 13px;
+.btn-secondary {
+    display: inline-block;
+    background-color: #FF6B4A;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 24px;
+    border-radius: 40px;
+    border: none;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s;
 }
-.edit-toggle-btn:hover {
-    background: #E2E8F0;
+.btn-secondary:hover {
+    background-color: #E55A3A;
+}
+
+/* ===== МОДАЛЬНОЕ ОКНО (проблемы) ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: white;
+    padding: 32px;
+    border-radius: 24px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    animation: fadeIn 0.2s;
+}
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== ОСТАЛЬНЫЕ БЛОКИ (ссылки, о нас, футер) ===== */
+.links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+.link-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 24px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.link-card a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0066FF;
+    text-decoration: none;
+}
+.about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 48px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.contact-info {
+    flex: 1;
+    min-width: 240px;
+}
+.contact-info h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+.contact-detail {
+    margin-bottom: 16px;
+    color: #5A6E7A;
+}
+.final-block {
+    background: #FFFFFF;
+    border-radius: 24px;
+    text-align: center;
+    padding: 48px 32px;
+    margin-top: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+@media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .hero h1 { font-size: 36px; }
+    .section-title { font-size: 28px; }
+    .task-card { padding: 20px; }
+    .task-title { font-size: 18px; }
+}
+/* Скрытая секция чек-листа (изначально не видна) */
+.hidden-checklist {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Видимая секция чек-листа (после клика) */
+.checklist-visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Дополнительная плавная прокрутка */
+html {
+    scroll-behavior: smooth;
+}
+/* Стили для кнопок в модальном окне сброса */
+#resetModal .modal-content button {
+    width: 100%;
+    justify-content: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;          /* расстояние между картинкой и текстом */
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 32px;        /* размер иконки – подберите под свой дизайн */
+    height: 32px;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0066FF;     /* цвет как у оригинального логотипа */
 }
