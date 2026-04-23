@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="shortcut icon" href="/images/favicon.ico">
-    <!-- 4. Иконка для iPhone и iPad (Apple Touch Icon) -->
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
     <title>Чек-лист настройки HTTPS | EduFlow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,11 +14,12 @@
     <div class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-            <img src="images/logo.jpeg" alt="Логотип EduFlow" class="logo-img">
-            <span class="logo-text">EduFlow</span></a>
+                <img src="images/logo.jpeg" alt="Логотип EduFlow" class="logo-img">
+                <span class="logo-text">EduFlow</span>
+            </a>
             <ul class="nav-links">
-                 <li><a href="#useful-links">Полезные ссылки</a></li>
-                 <li><a href="#about">О нас</a></li>
+                <li><a href="#useful-links">Полезные ссылки</a></li>
+                <li><a href="#about">О нас</a></li>
             </ul>
         </div>
     </div>
@@ -32,7 +32,6 @@
         </div>
     </section>
 
-    <!-- Секция чек-листа изначально скрыта -->
     <section id="todo-list" class="hidden-checklist">
         <div class="container">
             <h2 class="section-title">📋 Чек-лист настройки HTTPS</h2>
@@ -105,7 +104,7 @@
         </div>
     </footer>
 
-    <!-- Модальное окно для проблем -->
+    <!-- Модальные окна -->
     <div id="troubleModal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
@@ -113,17 +112,27 @@
             <p id="troubleText"></p>
         </div>
     </div>
-    <!-- Модальное окно для выбора сброса -->
     <div id="resetModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" id="resetModalClose">&times;</span>
             <h3>Сбросить или очистить список</h3>
             <p style="margin-bottom: 24px;">Выберите действие:</p>
             <div style="display: flex; flex-direction: column; gap: 12px;">
-                <button id="resetProgressBtn" class="btn-primary" style="background-color: #0066FF;">🔄 Сбросить прогресс (отметить все как невыполненные)</button>
+                <button id="resetProgressBtn" class="btn-primary" style="background-color: #0066FF;">🔄 Сбросить прогресс</button>
                 <button id="clearAllTasksBtn" class="btn-primary" style="background-color: #FF6B4A;">🗑️ Удалить все задачи</button>
                 <button id="restoreDefaultBtn" class="btn-primary" style="background-color: #10B981;">📋 Восстановить начальный список</button>
                 <button id="cancelResetBtn" class="btn-secondary" style="background-color: #E2E8F0; color: #1A2C3E;">Отмена</button>
+            </div>
+        </div>
+    </div>
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="deleteModalClose">&times;</span>
+            <h3>Удалить задачу?</h3>
+            <p id="deleteTaskTitle" style="margin-bottom: 24px; font-weight: 500;"></p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button id="confirmDeleteBtn" class="btn-primary" style="background-color: #EF4444;">🗑️ Удалить</button>
+                <button id="cancelDeleteBtn" class="btn-secondary" style="background-color: #E2E8F0; color: #1A2C3E;">Отмена</button>
             </div>
         </div>
     </div>

@@ -6,9 +6,9 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #F8FAFE; /* единый светлый фон (вариант А) */
+    background-color: #F1F5F9;   /* более контрастный светлый фон */
     color: #1A2C3E;
-    line-height: 1.5;
+    line-height: 1.6;
     scroll-behavior: smooth;
 }
 
@@ -16,6 +16,21 @@ body {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 32px;
+}
+
+/* ===== СТИЛИЗОВАННЫЙ СКРОЛЛБАР ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
 }
 
 /* ===== НАВИГАЦИЯ ===== */
@@ -40,6 +55,20 @@ body {
     font-weight: 700;
     color: #0066FF;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+}
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0066FF;
 }
 .nav-links {
     display: flex;
@@ -49,17 +78,18 @@ body {
 .nav-links a {
     font-size: 16px;
     font-weight: 500;
-    color: #5A6E7A;
+    color: #4B5563;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.25s ease;
+    padding: 8px 0;          /* увеличенная тач-область */
 }
 .nav-links a:hover {
     color: #0066FF;
 }
 
-/* ===== HERO (плавный переход А+В) ===== */
+/* ===== HERO ===== */
 .hero {
-    background: linear-gradient(135deg, #F0F4FF 0%, #E8F0FE 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%);
     border-radius: 0 0 40px 40px;
     margin-bottom: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.02);
@@ -67,7 +97,6 @@ body {
     min-height: auto;
     padding: 60px 0;
 }
-/* псевдоэлемент для ещё более плавного перехода */
 .hero::after {
     content: '';
     position: absolute;
@@ -75,7 +104,7 @@ body {
     left: 0;
     width: 100%;
     height: 40px;
-    background: linear-gradient(to bottom, rgba(240,244,255,0) 0%, #F8FAFE 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #F1F5F9 100%);
     pointer-events: none;
 }
 .hero-content {
@@ -86,13 +115,13 @@ body {
 .hero h1 {
     font-size: 48px;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.3;
     color: #1A2C3E;
     margin-bottom: 16px;
 }
 .hero p {
     font-size: 18px;
-    color: #4A627A;
+    color: #4B5563;
     margin-bottom: 32px;
 }
 
@@ -118,6 +147,7 @@ section {
     margin-bottom: 16px;
     font-size: 16px;
     font-weight: 500;
+    gap: 16px;
 }
 .progress-bar {
     background: #E2E8F0;
@@ -125,13 +155,15 @@ section {
     height: 12px;
     width: 100%;
     margin-bottom: 24px;
+    overflow: hidden;
 }
 .progress-fill {
-    background: #0066FF;
+    background: linear-gradient(90deg, #0066FF, #3B82F6);
     height: 12px;
     border-radius: 20px;
     width: 0%;
-    transition: width 0.3s;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(0,102,255,0.4);
 }
 
 /* ===== КАРТОЧКИ ЗАДАЧ ===== */
@@ -144,31 +176,74 @@ section {
     background: #FFFFFF;
     border-radius: 24px;
     padding: 28px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(0,102,255,0.06);
+    transition: all 0.25s ease;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardAppear 0.5s forwards;
 }
-/* Текущий таск (первый незавершённый) */
+@keyframes cardAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.task-card:hover {
+    box-shadow: 0 12px 32px rgba(0,102,255,0.12);
+    transform: translateY(-4px);
+}
 .task-card.current-task {
     border: 2px solid #0066FF;
-    box-shadow: 0 12px 28px rgba(0,102,255,0.15);
+    box-shadow: 0 0 0 4px rgba(0,102,255,0.15), 0 12px 28px rgba(0,102,255,0.15);
     background: #FFFFFF;
     transform: scale(1.01);
 }
-/* Заблокированные таски (пошаговое открытие, вариант Б) */
 .task-card.locked {
-    opacity: 0.6;
-    filter: grayscale(0.1);
-    pointer-events: none;
+    opacity: 0.8;
+    filter: grayscale(0.05);
 }
 .task-card.locked .task-checkbox {
-    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
 }
+.task-card.locked .edit-toggle-btn,
+.task-card.locked .trouble-btn {
+    pointer-events: none;
+    opacity: 0.6;
+}
+.task-card.locked .delete-task {
+    pointer-events: auto;
+    opacity: 1;
+    cursor: pointer;
+}
+.task-card.locked .delete-task:hover {
+    background: #DC2626 !important;
+}
+
+/* Нумерация этапов */
+.task-number {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    font-size: 48px;
+    font-weight: 800;
+    color: #E2E8F0;
+    line-height: 1;
+    pointer-events: none;
+    transition: color 0.25s ease;
+}
+.task-card.completed .task-number {
+    color: #10B981;
+}
+
 .task-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 16px;
+    padding-left: 56px;   /* освобождаем место под номер */
 }
 .task-title {
     display: flex;
@@ -176,8 +251,11 @@ section {
     gap: 12px;
     font-size: 20px;
     font-weight: 600;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
-/* Кастомный анимированный чекбокс (вариант В) */
+
+/* Кастомный чекбокс с анимацией галочки */
 .task-checkbox {
     appearance: none;
     width: 24px;
@@ -186,8 +264,9 @@ section {
     border-radius: 50%;
     background: white;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
     position: relative;
+    flex-shrink: 0;
 }
 .task-checkbox:checked {
     background: #0066FF;
@@ -200,17 +279,23 @@ section {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
+    animation: checkPop 0.25s ease forwards;
 }
-/* Ripple-эффект при клике */
+@keyframes checkPop {
+    to { transform: translate(-50%, -50%) scale(1); }
+}
 .task-checkbox:active {
     transform: scale(0.9);
 }
+
 .task-status-badge {
     font-size: 14px;
     font-weight: 500;
     padding: 4px 12px;
     border-radius: 30px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 .task-status-badge.completed {
     background: #EFFAF5;
@@ -220,21 +305,24 @@ section {
     background: #FEF2F2;
     color: #EF4444;
 }
+
 .task-description {
     font-size: 16px;
-    color: #5A6E7A;
+    color: #4B5563;
     margin: 16px 0;
+    line-height: 1.6;
 }
 .task-commands {
     background: #F1F5F9;
     padding: 16px;
     border-radius: 12px;
-    font-family: monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 14px;
     margin: 16px 0;
     overflow-x: auto;
     white-space: pre-wrap;
 }
+
 .card-actions {
     display: flex;
     justify-content: flex-end;
@@ -249,7 +337,7 @@ section {
     border-radius: 30px;
     font-size: 13px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s ease;
 }
 .edit-toggle-btn:hover, .trouble-btn:hover {
     background: #E2E8F0;
@@ -269,7 +357,7 @@ section {
     border-radius: 24px;
     padding: 32px;
     margin-top: 40px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(0,102,255,0.06);
 }
 .form-group {
     margin-bottom: 20px;
@@ -278,6 +366,7 @@ section {
     display: block;
     font-weight: 500;
     margin-bottom: 8px;
+    color: #1A2C3E;
 }
 .form-input, .form-textarea {
     width: 100%;
@@ -286,12 +375,15 @@ section {
     border-radius: 16px;
     font-family: inherit;
     font-size: 16px;
-    transition: border 0.2s;
+    transition: border 0.25s, box-shadow 0.25s;
 }
 .form-input:focus, .form-textarea:focus {
     outline: none;
     border-color: #0066FF;
+    box-shadow: 0 0 0 3px rgba(0,102,255,0.2);
 }
+
+/* Кнопки */
 .btn-primary {
     display: inline-block;
     background-color: #0066FF;
@@ -302,10 +394,15 @@ section {
     border-radius: 40px;
     border: none;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.25s ease;
 }
 .btn-primary:hover {
     background-color: #0052CC;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,102,255,0.3);
+}
+.btn-primary:active {
+    transform: scale(0.97);
 }
 .btn-secondary {
     display: inline-block;
@@ -317,13 +414,18 @@ section {
     border-radius: 40px;
     border: none;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.25s ease;
 }
 .btn-secondary:hover {
     background-color: #E55A3A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255,107,74,0.3);
+}
+.btn-secondary:active {
+    transform: scale(0.97);
 }
 
-/* ===== МОДАЛЬНОЕ ОКНО (проблемы) ===== */
+/* ===== МОДАЛЬНЫЕ ОКНА ===== */
 .modal {
     display: none;
     position: fixed;
@@ -335,6 +437,7 @@ section {
     background-color: rgba(0,0,0,0.5);
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(4px);
 }
 .modal-content {
     background: white;
@@ -343,7 +446,11 @@ section {
     max-width: 500px;
     width: 90%;
     position: relative;
-    animation: fadeIn 0.2s;
+    animation: modalIn 0.25s ease forwards;
+    transform: scale(0.95);
+}
+@keyframes modalIn {
+    to { transform: scale(1); }
 }
 .modal-close {
     position: absolute;
@@ -352,13 +459,13 @@ section {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.25s;
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+.modal-close:hover {
+    color: #0066FF;
 }
 
-/* ===== ОСТАЛЬНЫЕ БЛОКИ (ссылки, о нас, футер) ===== */
+/* ===== ОСТАЛЬНЫЕ БЛОКИ ===== */
 .links-grid {
     display: flex;
     flex-wrap: wrap;
@@ -371,7 +478,12 @@ section {
     padding: 24px;
     width: 280px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,102,255,0.05);
+    transition: all 0.25s ease;
+}
+.link-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,102,255,0.1);
 }
 .link-card a {
     font-size: 16px;
@@ -387,7 +499,7 @@ section {
     background: #FFFFFF;
     border-radius: 24px;
     padding: 48px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,102,255,0.05);
 }
 .contact-info {
     flex: 1;
@@ -396,10 +508,11 @@ section {
 .contact-info h3 {
     font-size: 24px;
     margin-bottom: 24px;
+    color: #1A2C3E;
 }
 .contact-detail {
     margin-bottom: 16px;
-    color: #5A6E7A;
+    color: #4B5563;
 }
 .final-block {
     background: #FFFFFF;
@@ -407,55 +520,63 @@ section {
     text-align: center;
     padding: 48px 32px;
     margin-top: 40px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 24px rgba(0,102,255,0.08);
 }
+
+/* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 768px) {
-    .container { padding: 0 24px; }
-    .hero h1 { font-size: 36px; }
-    .section-title { font-size: 28px; }
-    .task-card { padding: 20px; }
-    .task-title { font-size: 18px; }
+    .container { padding: 0 16px; }
+    .hero h1 { font-size: 32px; }
+    .section-title { font-size: 24px; }
+    .task-card { padding: 16px; }
+    .task-title { font-size: 16px; }
+    .task-header {
+        padding-left: 48px;   /* чуть меньше, т.к. номер тоже уменьшаем */
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .task-number {
+        font-size: 36px;
+        top: 12px;
+        left: 12px;
+    }
+    .task-status-badge {
+        font-size: 12px;
+        padding: 2px 10px;
+        align-self: flex-start;
+        margin-top: 4px;
+    }
+    .stats {
+        justify-content: center;
+    }
+    .progress-bar {
+        margin-bottom: 16px;
+    }
+    .card-actions {
+        justify-content: flex-start;
+    }
 }
-/* Скрытая секция чек-листа (изначально не видна) */
+
+/* Скрытая секция чек-листа */
 .hidden-checklist {
     display: none;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
-/* Видимая секция чек-листа (после клика) */
 .checklist-visible {
     display: block;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Дополнительная плавная прокрутка */
 html {
     scroll-behavior: smooth;
 }
-/* Стили для кнопок в модальном окне сброса */
-#resetModal .modal-content button {
+
+/* Кнопки в модалке сброса и удаления */
+#resetModal .modal-content button,
+#deleteModal .modal-content button {
     width: 100%;
     justify-content: center;
-}
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;          /* расстояние между картинкой и текстом */
-    text-decoration: none;
-}
-
-.logo-img {
-    width: 32px;        /* размер иконки – подберите под свой дизайн */
-    height: 32px;
-    object-fit: contain;
-    display: block;
-}
-
-.logo-text {
-    font-size: 24px;
-    font-weight: 700;
-    color: #0066FF;     /* цвет как у оригинального логотипа */
 }
