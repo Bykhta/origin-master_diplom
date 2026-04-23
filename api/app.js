@@ -501,3 +501,20 @@ if (window.location.hash === "#todo-list") {
 if (checklistSection && !checklistSection.classList.contains("hidden-checklist") && !checklistRendered) {
     showChecklist();
 }
+
+const burgerBtn = document.querySelector('.burger-btn');
+const navMenu = document.querySelector('.nav-menu');
+if (burgerBtn && navMenu) {
+    burgerBtn.addEventListener('click', () => {
+        burgerBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    // Закрытие при клике на ссылку
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            burgerBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
